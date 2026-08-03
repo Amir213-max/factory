@@ -297,19 +297,27 @@ ul.jet-mega-menu-sub-menu__list{
 }
 </style>
 <style id="hero-industrial-bg">
-/* Hero base: full image, no dark overlay */
+/* ========== HERO — responsive banner ========== */
 .elementor-element-7e705bb,
 .elementor-element-7e705bb.e-con,
 .elementor-3760 .elementor-element.elementor-element-7e705bb {
-  background-image: url("/wp-content/uploads/2026/08/hero-industrial-era.png") !important;
-  background-size: cover !important;
-  background-position: center center !important;
+  --hero-img: url("/wp-content/uploads/2026/08/hero-industrial-era.png");
+  --hero-bg: #041436;
+  background-image: var(--hero-img) !important;
+  background-color: var(--hero-bg) !important;
   background-repeat: no-repeat !important;
-  background-color: #0a1628 !important;
-  min-height: 100vh !important;
+  background-position: center center !important;
+  background-size: cover !important;
   position: relative !important;
   overflow: hidden !important;
   --overlay-opacity: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  /* Desktop: full viewport feel */
+  min-height: min(100vh, 720px) !important;
+  height: min(100vh, 720px) !important;
 }
 
 .elementor-element-7e705bb::before,
@@ -324,13 +332,14 @@ ul.jet-mega-menu-sub-menu__list{
   opacity: 0 !important;
 }
 
-/* Photo fill */
+/* Actual photo layer */
 .elementor-element-7e705bb > .hero-industrial-fallback {
   display: block !important;
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  max-width: none !important;
   object-fit: cover !important;
   object-position: center center !important;
   z-index: 0 !important;
@@ -339,7 +348,7 @@ ul.jet-mega-menu-sub-menu__list{
   visibility: visible !important;
 }
 
-/* Hide text / CTA / email / full nav overlays on hero */
+/* Hide non-hero overlays (title, quote, CTA, email, main menu) */
 .elementor-element-7e705bb .elementor-element-b64be0a,
 .elementor-element-7e705bb .elementor-element-90ca3a7,
 .elementor-element-7e705bb .elementor-element-0ff364b,
@@ -354,30 +363,23 @@ ul.jet-mega-menu-sub-menu__list{
   display: none !important;
 }
 
-/* ===== Social icons: top LEFT ===== */
+/* Social — top left */
 .elementor-element-7e705bb > .elementor-element-ac6c5e3 {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto !important;
   position: absolute !important;
-  top: 18px !important;
-  left: 18px !important;
+  top: clamp(10px, 2.2vw, 20px) !important;
+  left: clamp(10px, 2.2vw, 20px) !important;
   right: auto !important;
   bottom: auto !important;
   width: auto !important;
-  max-width: none !important;
   z-index: 20 !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
-  flex-direction: row !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
   transform: none !important;
-  inset: auto auto auto 18px !important;
-  top: 18px !important;
-  left: 18px !important;
 }
 
 .elementor-element-7e705bb .elementor-element-6ec0ddf,
@@ -395,32 +397,34 @@ ul.jet-mega-menu-sub-menu__list{
 .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icons-wrapper {
   display: flex !important;
   flex-direction: row !important;
-  gap: 10px !important;
+  flex-wrap: nowrap !important;
+  gap: clamp(6px, 1.5vw, 12px) !important;
   justify-content: flex-start !important;
   align-items: center !important;
 }
 
 .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icon {
-  background-color: rgba(255,255,255,0.15) !important;
+  background-color: rgba(255,255,255,0.16) !important;
   color: #fff !important;
   border-radius: 50% !important;
-  width: 40px !important;
-  height: 40px !important;
+  width: clamp(34px, 5.2vw, 42px) !important;
+  height: clamp(34px, 5.2vw, 42px) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   transition: background-color .2s ease;
+  backdrop-filter: blur(4px);
 }
 .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icon:hover {
   background-color: rgba(255,255,255,0.35) !important;
 }
 .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icon svg {
   fill: #fff !important;
-  width: 18px !important;
-  height: 18px !important;
+  width: clamp(14px, 2.4vw, 18px) !important;
+  height: clamp(14px, 2.4vw, 18px) !important;
 }
 
-/* ===== Logo: original menu-bottom logo slot ===== */
+/* Logo — original bottom slot */
 .elementor-element-7e705bb > .elementor-element-0e75d3a {
   display: flex !important;
   visibility: visible !important;
@@ -429,22 +433,17 @@ ul.jet-mega-menu-sub-menu__list{
   position: absolute !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: 24px !important;
+  bottom: clamp(12px, 3vw, 28px) !important;
   top: auto !important;
   width: 100% !important;
   z-index: 20 !important;
   margin: 0 !important;
-  padding: 0 24px !important;
+  padding: 0 clamp(12px, 3vw, 28px) !important;
   background: transparent !important;
   box-shadow: none !important;
   transform: none !important;
-  justify-content: flex-start !important; /* RTL: flex-start = right side (old logo side) */
-  align-items: center !important;
-}
-
-/* In RTL flex-start places logo where old nav logo sat (right side). Body is rtl. */
-body.rtl .elementor-element-7e705bb > .elementor-element-0e75d3a {
   justify-content: flex-start !important;
+  align-items: center !important;
 }
 
 .elementor-element-7e705bb .elementor-element-3a671b6,
@@ -455,45 +454,134 @@ body.rtl .elementor-element-7e705bb > .elementor-element-0e75d3a {
   opacity: 1 !important;
   pointer-events: auto !important;
   width: auto !important;
+  max-width: 100% !important;
   margin: 0 !important;
   background: transparent !important;
 }
 
 .elementor-element-7e705bb .elementor-element-532decc img,
 .elementor-element-532decc img {
-  max-height: 72px !important;
+  max-height: clamp(44px, 8vw, 72px) !important;
   width: auto !important;
   height: auto !important;
-  max-width: 220px !important;
+  max-width: min(42vw, 220px) !important;
   object-fit: contain !important;
   display: block !important;
-  /* Soft board behind if logo is white-on-dark / dark-on-dark */
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 
-@media (max-width: 767px) {
-  .elementor-element-7e705bb > .elementor-element-ac6c5e3 {
-    top: 12px !important;
-    left: 12px !important;
+/* ----- Tablet ----- */
+@media (max-width: 1024px) {
+  .elementor-element-7e705bb,
+  .elementor-element-7e705bb.e-con,
+  .elementor-3760 .elementor-element.elementor-element-7e705bb {
+    /* Keep cover but center the banner text area */
+    min-height: 56vh !important;
+    height: 56vh !important;
+    max-height: 640px !important;
+    background-size: cover !important;
+    background-position: center 42% !important;
   }
-  .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icon {
-    width: 36px !important;
-    height: 36px !important;
-  }
-  .elementor-element-7e705bb .elementor-element-532decc img {
-    max-height: 52px !important;
-    max-width: 160px !important;
-  }
-  .elementor-element-7e705bb > .elementor-element-0e75d3a {
-    bottom: 16px !important;
-    padding: 0 12px !important;
+  .elementor-element-7e705bb > .hero-industrial-fallback {
+    object-fit: cover !important;
+    object-position: center 42% !important;
   }
 }
-</style></head>
+
+/* ----- Mobile: show full banner (text not cropped) ----- */
+@media (max-width: 767px) {
+  .elementor-element-7e705bb,
+  .elementor-element-7e705bb.e-con,
+  .elementor-3760 .elementor-element.elementor-element-7e705bb {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 1024 / 490 !important;
+    background-size: contain !important;
+    background-position: center center !important;
+  }
+
+  .elementor-element-7e705bb > .hero-industrial-fallback {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+
+  .elementor-element-7e705bb > .elementor-element-ac6c5e3 {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+  }
+
+  .elementor-element-7e705bb > .elementor-element-0e75d3a {
+    position: absolute !important;
+    bottom: 10px !important;
+    padding: 0 10px !important;
+  }
+
+  .elementor-element-7e705bb .elementor-element-532decc img {
+    max-height: 42px !important;
+    max-width: 120px !important;
+  }
+
+  .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icon svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .elementor-element-7e705bb .elementor-element-532decc img {
+    max-height: 36px !important;
+    max-width: 100px !important;
+  }
+  .elementor-element-7e705bb > .elementor-element-ac6c5e3 {
+    top: 8px !important;
+    left: 8px !important;
+  }
+  .elementor-element-7e705bb .elementor-element-58dd9dd .elementor-social-icons-wrapper {
+    gap: 5px !important;
+  }
+}
+
+/* Short landscape phones / fold */
+@media (max-height: 500px) and (orientation: landscape) {
+  .elementor-element-7e705bb,
+  .elementor-element-7e705bb.e-con,
+  .elementor-3760 .elementor-element.elementor-element-7e705bb {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    aspect-ratio: auto !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+  .elementor-element-7e705bb > .hero-industrial-fallback {
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+  }
+  .elementor-element-7e705bb .elementor-element-532decc img {
+    max-height: 36px !important;
+  }
+}
+</style>
+</head>
 <body class="rtl home wp-singular page-template page-template-elementor_canvas page page-id-3760 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor translatepress-ar ehf-template-hello-elementor ehf-stylesheet-hello-elementor jet-mega-menu-location elementor-default elementor-template-canvas elementor-kit-17 elementor-page elementor-page-3760">
 			<div data-elementor-type="wp-page" data-elementor-id="3760" class="elementor elementor-3760" data-elementor-post-type="page">
 				<div class="elementor-element elementor-element-7e705bb e-con-full e-flex e-con e-parent e-lazyloaded e-no-lazyload" data-id="7e705bb" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" style="background-image:url('/wp-content/uploads/2026/08/hero-industrial-era.png');background-size:cover;background-position:center center;background-repeat:no-repeat;">
-		<img class="hero-industrial-fallback" src="/wp-content/uploads/2026/08/hero-industrial-era.png" alt="مصنع العصر الصناعي" width="1920" height="1080" decoding="async" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;" />
+		<img class="hero-industrial-fallback" src="/wp-content/uploads/2026/08/hero-industrial-era.png" srcset="/wp-content/uploads/2026/08/hero-industrial-era.png 1024w" sizes="100vw" alt="مصنع العصر الصناعي" width="1024" height="490" decoding="async" fetchpriority="high" />
 		<div class="elementor-element elementor-element-ac6c5e3 e-con-full e-flex e-con e-child" data-id="ac6c5e3" data-element_type="container" data-settings="{&quot;position&quot;:&quot;absolute&quot;}">
 		<div class="elementor-element elementor-element-4a14eb3 e-con-full e-flex e-con e-child" data-id="4a14eb3" data-element_type="container">
 				<div class="elementor-element elementor-element-d817047 elementor-widget elementor-widget-heading" data-id="d817047" data-element_type="widget" data-widget_type="heading.default">
